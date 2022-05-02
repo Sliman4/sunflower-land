@@ -9,6 +9,10 @@ type Request = {
 const API_URL = CONFIG.API_URL;
 
 export async function reset(request: Request) {
+  if (!API_URL) {
+    return { success: true };
+  }
+
   // Uses same autosave event driven endpoint
   const response = await window.fetch(`${API_URL}/reset/${request.farmId}`, {
     method: "POST",
