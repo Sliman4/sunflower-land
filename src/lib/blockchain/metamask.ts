@@ -78,7 +78,9 @@ export class Metamask {
     if ((window as any).ethereum) {
       try {
         // Request account access if needed
-        await (window as any).ethereum.enable();
+        await (window as any).ethereum.request({
+          method: "eth_requestAccounts",
+        });
         this.web3 = new Web3((window as any).ethereum);
       } catch (error) {
         // User denied account access...
